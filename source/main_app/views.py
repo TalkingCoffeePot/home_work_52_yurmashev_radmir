@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic import View, TemplateView
 from main_app.models import Task
 from main_app.forms import TaskForm
-# Create your views here.
+
 
 
 class MainView(TemplateView):

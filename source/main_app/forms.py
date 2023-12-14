@@ -7,7 +7,7 @@ class TaskForm(forms.Form):
     description = forms.CharField(max_length=1500, required=True, label='полное описание',
                             widget=widgets.Textarea)
     task_status = forms.ModelChoiceField(queryset=StatusModel.objects.all())
-    task_type = forms.ModelChoiceField(queryset=TypeModel.objects.all())
+    task_types = forms.ModelMultipleChoiceField(queryset=TypeModel.objects.all())
   
     
     

@@ -21,7 +21,6 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ['summery', 
                     'description',
                     'task_status', 
-                    'task_type', 
                     'date_create', 
                     'date_update',]
     

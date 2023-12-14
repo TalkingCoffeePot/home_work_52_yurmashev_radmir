@@ -17,7 +17,7 @@
                 <div class="task_box">
                     <h2>{{task.summery}}</h2>
                     <p>Текущий статус: {{ task.task_status}}</p>
-                    <p>Тип задачи: {{task.task_type}}</p>
+                    <p>Тип задачи: {% for type in task.task_types.all %}{{ type.type }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
                     <span>Последнее изменение: {{task.date_update}}</span>
                     <p><a href="{% url 'task_details' task.pk %}">Подробнее</a></p>
                 </div>

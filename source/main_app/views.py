@@ -26,10 +26,12 @@ class AddTaskView(View):
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST)
         if form.is_valid():
+            types = form.cleaned_data.pop('task_types')
             task = Task.objects.create(summery=form.cleaned_data['summery'],
                                 description=form.cleaned_data['description'], 
-                                task_status=form.cleaned_data['task_status'], 
-                                task_type=form.cleaned_data['task_type'])             
+                                task_status=form.cleaned_data['task_status']
+                                )
+            task.task_types.set(types)             
             return redirect('task_details', task_pk=task.pk)
         else:
             return render(request, 'new_task', context={'form': form})
@@ -41,7 +43,7 @@ class UpdateTaskView(View):
                 'summery': task.summery,
                 'description': task.description,
                 'task_status': task.task_status,
-                'task_type': task.task_type
+                'task_type': task.task_types.all()
             })
         context = {
                 'task': task,
@@ -53,11 +55,12 @@ class UpdateTaskView(View):
             form = TaskForm(data=request.POST)
             task = Task.objects.get(pk=kwargs['task_pk']) 
             if form.is_valid():
+                types = form.cleaned_data.pop('task_types')
                 task.summery = form.cleaned_data['summery']
                 task.description = form.cleaned_data['description']
                 task.task_status = form.cleaned_data['task_status']
-                task.task_type = form.cleaned_data['task_type']
                 task.save()
+                task.task_types.set(types)       
                 return redirect('task_details', task_pk=task.pk)
             else:
                 return render(request, 'update_task', context={'task': task,'form': form})

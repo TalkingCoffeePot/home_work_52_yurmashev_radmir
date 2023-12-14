@@ -7,8 +7,16 @@ status_choices = [('new', 'New'), ('in_progress', 'In progress'),  ('done', 'Don
 class StatusModel(models.Model):
     status = models.CharField('Наименование статуса', max_length=100, null=False, blank=False)
 
+    def __str__(self):
+        return f'{self.status}'
+    
+
 class TypeModel(models.Model):
     type = models.CharField('Тип задачи', max_length=100, null=False, blank=False)
+
+    def __str__(self):
+        return f'{self.type}'
+    
 
 class Task(models.Model):
     summery = models.CharField(max_length=100, null=False, blank=False, verbose_name='Краткое описание')
@@ -19,4 +27,4 @@ class Task(models.Model):
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
 
     def __str__(self):
-        return f'{self.pk}, {self.description}, {self.task_status}, {self.date}' 
+        return f'{self.pk}, {self.summery}, {self.task_status}, {self.date_update}' 

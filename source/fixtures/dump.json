@@ -1,42 +1,104 @@
 [
 {
+  "model": "main_app.statusmodel",
+  "pk": 1,
+  "fields": {
+    "status": "New"
+  }
+},
+{
+  "model": "main_app.statusmodel",
+  "pk": 2,
+  "fields": {
+    "status": "In Progress"
+  }
+},
+{
+  "model": "main_app.statusmodel",
+  "pk": 3,
+  "fields": {
+    "status": "Done"
+  }
+},
+{
+  "model": "main_app.typemodel",
+  "pk": 1,
+  "fields": {
+    "type": "Task"
+  }
+},
+{
+  "model": "main_app.typemodel",
+  "pk": 2,
+  "fields": {
+    "type": "Bug"
+  }
+},
+{
+  "model": "main_app.typemodel",
+  "pk": 3,
+  "fields": {
+    "type": "Enhancement"
+  }
+},
+{
   "model": "main_app.task",
   "pk": 1,
   "fields": {
-    "description": "Check my email",
-    "task_status": "new",
-    "date": "2023-12-04",
-    "details": "Very usefull"
+    "summery": "Добавить шапку сайта",
+    "description": "Добавить весь функционал для шапки сайта",
+    "task_status": 1,
+    "task_type": 1,
+    "date_create": "2023-12-14T16:38:13.989Z",
+    "date_update": "2023-12-14T16:38:13.989Z"
   }
 },
 {
   "model": "main_app.task",
   "pk": 2,
   "fields": {
-    "description": "Create a simple web-search app",
-    "task_status": "new",
-    "date": "2023-12-12",
-    "details": "Make some tries to create a simple web-search app"
+    "summery": "Модели страниц",
+    "description": "Создать модели страниц для редактирования текста на этих страницах",
+    "task_status": 1,
+    "task_type": 1,
+    "date_create": "2023-12-14T16:38:54.348Z",
+    "date_update": "2023-12-14T16:38:54.348Z"
   }
 },
 {
   "model": "main_app.task",
   "pk": 3,
   "fields": {
-    "description": "Create a AMV with DaVinci Resolve",
-    "task_status": "done",
-    "date": "2023-11-05",
-    "details": "Improving my video editing skills"
+    "summery": "Добавить метода __str__",
+    "description": "Добавить методы для отображения поля с наименованием, а не название объекта в админ панели",
+    "task_status": 2,
+    "task_type": 3,
+    "date_create": "2023-12-14T16:39:49.402Z",
+    "date_update": "2023-12-14T16:39:49.402Z"
   }
 },
 {
   "model": "main_app.task",
-  "pk": 9,
+  "pk": 4,
   "fields": {
-    "description": "Search",
-    "task_status": "new",
-    "date": "2023-12-31",
-    "details": "search engine"
+    "summery": "Убрать дубликат поля",
+    "description": "Убрать дубликат отображения истории изменения объекта History",
+    "task_status": 2,
+    "task_type": 2,
+    "date_create": "2023-12-14T16:40:26.175Z",
+    "date_update": "2023-12-14T16:40:26.175Z"
+  }
+},
+{
+  "model": "main_app.task",
+  "pk": 5,
+  "fields": {
+    "summery": "Изменить модель",
+    "description": "Изменить модель так, чтобы вместо загрузки изображения можно было выбирать из списка уже загруженных(а может и дополнительно отобразить это поле)",
+    "task_status": 3,
+    "task_type": 3,
+    "date_create": "2023-12-14T16:41:45.656Z",
+    "date_update": "2023-12-14T16:41:45.656Z"
   }
 }
 ]

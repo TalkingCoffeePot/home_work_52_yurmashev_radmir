@@ -35,7 +35,6 @@ class AddTaskView(View):
             return render(request, 'new_task', context={'form': form})
 
 class UpdateTaskView(View):
-
     def get(self, request, *args, **kwargs):
         task = Task.objects.get(pk=kwargs['task_pk']) 
         form = TaskForm(initial={

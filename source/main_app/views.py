@@ -1,73 +1,77 @@
-from django.shortcuts import render, redirect
+from typing import Any
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-# from main_app.models import Task, status_choices
-# from main_app.forms import TaskForm
+from django.views.generic import View, TemplateView
+from main_app.models import Task
+from main_app.forms import TaskForm
 # Create your views here.
 
 
-# def main_list(request):
-#     tasks = Task.objects.all()
-#     context = {
-#         'tasks': tasks
-#     }
-#     return render(request, 'main_page.html', context)
+class MainView(TemplateView):
+    template_name='main_page.html'
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        kwargs['tasks'] = Task.objects.all()
+        return super().get_context_data(**kwargs)
+    
 
+class AddTaskView(View):
+    def get(self, request, *args, **kwargs):
+        form = TaskForm()
+        context = {
+        'form': form
+        }
+        return render(request, 'add_task.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            task = Task.objects.create(summery=form.cleaned_data['summery'],
+                                description=form.cleaned_data['description'], 
+                                task_status=form.cleaned_data['task_status'], 
+                                task_type=form.cleaned_data['task_type'])             
+            return redirect('task_details', task_pk=task.pk)
+        else:
+            return render(request, 'new_task', context={'form': form})
 
-# def new_task(request):
-#     context = {
-#         'status_choices': status_choices
-#     }
-#     return render(request, 'add_task.html', context)
+class UpdateTaskView(View):
 
+    def get(self, request, *args, **kwargs):
+        task = Task.objects.get(pk=kwargs['task_pk']) 
+        form = TaskForm(initial={
+                'summery': task.summery,
+                'description': task.description,
+                'task_status': task.task_status,
+                'task_type': task.task_type
+            })
+        context = {
+                'task': task,
+                'form': form
+            }
+        return render(request, 'update_task.html', context)
+    
+    def post(self, request, *args, **kwargs):
+            form = TaskForm(data=request.POST)
+            task = Task.objects.get(pk=kwargs['task_pk']) 
+            if form.is_valid():
+                task.summery = form.cleaned_data['summery']
+                task.description = form.cleaned_data['description']
+                task.task_status = form.cleaned_data['task_status']
+                task.task_type = form.cleaned_data['task_type']
+                task.save()
+                return redirect('task_details', task_pk=task.pk)
+            else:
+                return render(request, 'update_task', context={'task': task,'form': form})
 
-# def add_task(request):
-#     if request.method == 'GET':
-#         form = TaskForm()
-#         context = {
-#         'form': form
-#         }
-#         return render(request, 'add_task.html', context)
-#     elif request.method == 'POST':
-#         form = TaskForm(data=request.POST)
-#         if form.is_valid():
-#             task = Task.objects.create(description=form.cleaned_data['description'], 
-#                                 task_status=form.cleaned_data['task_status'], 
-#                                 date=form.cleaned_data['date'], 
-#                                 details=form.cleaned_data['details'])
-            
-#             return redirect('task_details', pk=task.pk)
-#         else:
-#             return render(request, 'new_task', context={'form': form})
-
-
-# def update_task(request, pk):
-#     task = Task.objects.get(pk=pk) 
-#     if request.method == 'GET':
-#         form = TaskForm(initial={
-#             'description': task.description,
-#             'task_status': task.task_status,
-#             'date': task.date,
-#             'details': task.details
-#         })
-#         context = {
-#             'task': task,
-#             'form': form
-#         }
-#         return render(request, 'update_task.html', context)
-#     elif request.method == 'POST':
-#         form = TaskForm(data=request.POST)
-#         if form.is_valid():
-#             task.description = form.cleaned_data['description']
-#             task.task_status = form.cleaned_data['task_status']
-#             task.date = form.cleaned_data['date']
-#             task.details = form.cleaned_data['details']
-#             task.save()
-#             return redirect('task_details', pk=task.pk)
-#         else:
-#             return render(request, 'update_task', context={'task': task,'form': form})
-
-
+class DeleteTaskView(TemplateView):
+    template_name = 'delete_task.html'
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        kwargs['task'] = get_object_or_404(Task, pk=kwargs['task_pk'])
+        return super().get_context_data(**kwargs)
+    def post(self, request, *args, **kwargs):
+        task = Task.objects.get(pk=kwargs['task_pk']) 
+        task.delete()
+        return redirect('tasks')  
 # def delete_task(request, pk):
 #     task = Task.objects.get(pk=pk) 
 #     if request.method == 'GET':
@@ -76,9 +80,10 @@ from django.urls import reverse
 #         task.delete()
 #         return redirect('tasks')    
 
-# def detailed_view(request, pk):
-#     task = Task.objects.get(pk=pk)
-#     context = {
-#         'task': task
-#     }
-#     return render(request, 'detailed_task.html', context)
+
+class TaskView(TemplateView):
+    template_name = 'detailed_task.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        kwargs['task'] = get_object_or_404(Task, pk=kwargs['task_pk'])
+        return super().get_context_data(**kwargs)

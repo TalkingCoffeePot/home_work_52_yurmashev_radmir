@@ -14,18 +14,19 @@
         <div class="task_box">
             {% csrf_token %}
             <div class="box">
-                <h1>{{task.description}}</h1>
-            </div>
-
+                <h3>Статус: {{task.task_status}} | Тип: {{task.task_type}}</h2>
+            </div>    
             <div class="box">
-                <h2>{{task.task_status}}</h2>
-            </div>
-
-            <div class="box">
-                <h2>{{task.date}}</h2>
+                <h1>{{task.summery}}</h1>
             </div>
             <div class="box">
-                <p>{{task.details}}</p>
+                <p>{{task.description}}</p>
+            </div>
+            <div class="box">
+                <span>Создано: {{task.date_create}}</span>
+            </div>
+            <div class="box">
+                <span>Обновлено: {{task.date_update}}</span>
             </div>
             <div class="box">
                 <a href="{% url 'delete_task' task.pk %}" class="btn btn-danger">Удалить</a>

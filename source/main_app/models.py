@@ -1,4 +1,5 @@
 from django.db import models
+from main_app.validators import clean_description, clean_tite
 
 # Create your models here.
 
@@ -19,8 +20,8 @@ class TypeModel(models.Model):
     
 
 class Task(models.Model):
-    summery = models.CharField(max_length=100, null=False, blank=False, verbose_name='Краткое описание')
-    description = models.TextField(max_length=1150, null=False, blank=False, verbose_name='Полное описание')
+    summery = models.CharField(max_length=100, null=False, blank=False, verbose_name='Краткое описание', validators=[clean_tite])
+    description = models.TextField(max_length=1150, null=False, blank=False, verbose_name='Полное описание', validators=[clean_description])
     task_status = models.ForeignKey(StatusModel, related_name='task', on_delete=models.PROTECT)
     task_types = models.ManyToManyField('main_app.TypeModel', related_name='task_set', blank=True)
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')

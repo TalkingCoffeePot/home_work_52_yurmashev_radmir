@@ -1,0 +1,23 @@
+Первый запрос:
+from datetime import datetime, timedelta
+from main_app.models import Task
+
+last = datetime.now()
+first = last - timedelta(days=30)
+
+tasks = Task.objects.filter(task_status__status='Done', date_update__range=(first, last))
+
+
+Второй запрос:
+from main_app.models import Task
+tasks = Task.objects.filter(task_status__status__in=['Done', 'New'], task_types__type__in=['Task', 'Bug'])
+
+
+Третий запрос:
+from django.db.models import Q
+from main_app.models import Task
+
+q_1 = Q(summery__icontains = 'bug', task_status__status__in=['In Progress', 'New']) 
+q_2 = Q(task_types__type='Bug', task_status__status__in=['In Progress', 'New'])
+
+tasks = Task.objects.filter(q_1 | q_2).distinct()

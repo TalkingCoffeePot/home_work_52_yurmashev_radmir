@@ -13,7 +13,7 @@ class StatusModel(models.Model):
 
 class TypeModel(models.Model):
     type = models.CharField('Тип задачи', max_length=100, null=False, blank=False)
-
+ 
     def __str__(self):
         return f'{self.type}'
     

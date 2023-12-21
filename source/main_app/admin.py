@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from main_app.models import Task, StatusModel, TypeModel
+from main_app.models import Task, StatusModel, TypeModel, ProjectModel
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -24,5 +24,14 @@ class TaskAdmin(admin.ModelAdmin):
                     'date_create', 
                     'date_update',]
     
+
+@admin.register(ProjectModel)
+class ProjectAdmin(admin.ModelAdmin):
+    list_display=[
+        'title',
+        'description',
+        'date_create',
+        'date_update',
+    ]
 
 

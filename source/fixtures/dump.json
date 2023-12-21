@@ -42,11 +42,22 @@
   }
 },
 {
+  "model": "main_app.projectmodel",
+  "pk": 1,
+  "fields": {
+    "date_create": "2023-12-01T20:54:00Z",
+    "date_update": null,
+    "title": "Сайт",
+    "description": "DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
+  }
+},
+{
   "model": "main_app.task",
   "pk": 1,
   "fields": {
     "summery": "Добавить шапку сайта",
     "description": "Do that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that task",
+    "task_project": 1,
     "task_status": 1,
     "date_create": "2023-12-14T19:21:29.659Z",
     "date_update": "2023-12-14T19:24:34.151Z",
@@ -61,6 +72,7 @@
   "fields": {
     "summery": "Модели страниц",
     "description": "Do that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that Task",
+    "task_project": 1,
     "task_status": 2,
     "date_create": "2023-12-14T19:27:13.569Z",
     "date_update": "2023-12-14T19:27:13.569Z",
@@ -75,6 +87,7 @@
   "fields": {
     "summery": "Добавить метода __str__",
     "description": "Do that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that Task",
+    "task_project": 1,
     "task_status": 3,
     "date_create": "2023-12-14T19:27:24.380Z",
     "date_update": "2023-12-14T19:27:24.380Z",
@@ -89,6 +102,7 @@
   "fields": {
     "summery": "Убрать дубликат поля",
     "description": "Do that TaskDo that TaskvDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that Task",
+    "task_project": 1,
     "task_status": 2,
     "date_create": "2023-12-14T19:27:34.493Z",
     "date_update": "2023-12-14T19:27:34.493Z",
@@ -103,11 +117,42 @@
   "fields": {
     "summery": "Изменить модель",
     "description": "Do that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that TaskDo that Task",
+    "task_project": 1,
     "task_status": 1,
     "date_create": "2023-12-14T19:27:48.433Z",
     "date_update": "2023-12-14T19:27:48.433Z",
     "task_types": [
       1
+    ]
+  }
+},
+{
+  "model": "main_app.task",
+  "pk": 7,
+  "fields": {
+    "summery": "gregreg",
+    "description": "rgsergregsergesrgesrgesrgers",
+    "task_project": 1,
+    "task_status": 3,
+    "date_create": "2023-12-19T09:08:27.502Z",
+    "date_update": "2023-12-19T10:16:44.120Z",
+    "task_types": [
+      3
+    ]
+  }
+},
+{
+  "model": "main_app.task",
+  "pk": 8,
+  "fields": {
+    "summery": "gf",
+    "description": "fdsavsergsegers",
+    "task_project": 1,
+    "task_status": 1,
+    "date_create": "2023-12-19T09:50:14.057Z",
+    "date_update": "2023-12-19T09:50:14.057Z",
+    "task_types": [
+      3
     ]
   }
 }

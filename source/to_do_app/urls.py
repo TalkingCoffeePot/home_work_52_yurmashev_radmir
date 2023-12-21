@@ -16,11 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from home_work_52_yurmashev_radmir.source.main_app.views.tasks_views import MainView, TaskView, AddTaskView, UpdateTaskView, DeleteTaskView
+from main_app.views import MainView, TaskView, AddTaskView, UpdateTaskView, DeleteTaskView
+from main_app.views import ListProjectsView, DetailProjectView, CreateProjectView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', MainView.as_view(), name='tasks'),
+    path('', ListProjectsView.as_view(), name='projects'),
+    path('projects/<int:project_pk>', DetailProjectView.as_view(), name='project_details'),
+    path('projects/create/', CreateProjectView.as_view(), name='create_project'),
+
     path('tasks/new/', AddTaskView.as_view(), name='new_task'),
     path('tasks/<int:task_pk>/', TaskView.as_view(), name='task_details'),
     path('tasks/<int:task_pk>/update/', UpdateTaskView.as_view(), name='update_task'),

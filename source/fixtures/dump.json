@@ -45,8 +45,8 @@
   "model": "main_app.projectmodel",
   "pk": 1,
   "fields": {
-    "date_create": "2023-12-01T20:54:00Z",
-    "date_update": null,
+    "date_create": "2023-12-01",
+    "date_finish": null,
     "title": "Сайт",
     "description": "DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
   }

@@ -1,13 +1,6 @@
 from django import forms
 from django.forms import widgets
-from main_app.models import TypeModel, StatusModel, Task
-
-# class TaskForm(forms.Form):
-#     summery = forms.CharField(max_length=200, required=True, label='Короткое описание')
-#     description = forms.CharField(max_length=1500, required=True, label='полное описание',
-#                             widget=widgets.Textarea)
-#     task_status = forms.ModelChoiceField(queryset=StatusModel.objects.all())
-#     task_types = forms.ModelMultipleChoiceField(queryset=TypeModel.objects.all())
+from main_app.models import TypeModel, StatusModel, Task, ProjectModel
 
 class TaskForm(forms.ModelForm):
     class Meta:
@@ -30,3 +23,14 @@ class TaskForm(forms.ModelForm):
         if len(title) < 5:
             raise forms.ValidationError("Слишком короткое название")
         return title
+    
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = ProjectModel
+        fields = [
+            'title',
+            'description',
+            'date_create',
+            'date_finish',
+        ]

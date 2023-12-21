@@ -31,7 +31,7 @@ class ProjectAdmin(admin.ModelAdmin):
         'title',
         'description',
         'date_create',
-        'date_update',
+        'date_finish',
     ]
 
 

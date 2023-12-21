@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Main Page{% endblock %}
+{% block style %}{% static 'css/main_style.css' %}{% endblock %}
+{% block menu %}
+    <li class="list">
+        <div class="new_task_button">
+            <a href="{% url 'create_project' %}">Добавить новый проект</a>
+        </div>
+    </li>
+{% endblock %}
+{% block content %}
+        <h1>To-do task manager!</h1>
+        <div class="task_container">
+            {% for project in projects %}
+                <div class="task_box">
+                    <h2>{{project.title}}</h2>
+                    <h3>Дата окончания: {{project.date_finish}}</h3>
+                    <h3>Дата начала: {{project.date_create}}</h3>
+                    <p><a href="{% url 'project_details' project.pk %}">Подробнее</a></p>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+{% endblock %}
+

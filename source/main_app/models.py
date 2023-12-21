@@ -18,8 +18,8 @@ class TypeModel(models.Model):
         return f'{self.type}'
     
 class ProjectModel(models.Model):
-    date_create = models.DateTimeField(auto_now_add=False, verbose_name='Дата начала', editable=True, null=False, blank=False)
-    date_update = models.DateTimeField(auto_now=False, verbose_name='Дата окончания', editable=True, null=True, blank=True)
+    date_create = models.DateField(auto_now_add=False, verbose_name='Дата начала', editable=True, null=False, blank=False)
+    date_finish = models.DateField(auto_now=False, verbose_name='Дата окончания', editable=True, null=True, blank=True)
     title = models.CharField(max_length=100, null=False, blank=False, verbose_name='Название')
     description = models.TextField(max_length=1150, null=False, blank=False, verbose_name='Полное описание')
 

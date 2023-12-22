@@ -34,3 +34,7 @@ class ProjectForm(forms.ModelForm):
             'date_create',
             'date_finish',
         ]
+
+
+class SimpleSearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False, label="Найти")

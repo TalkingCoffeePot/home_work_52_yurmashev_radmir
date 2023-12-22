@@ -8,6 +8,9 @@
         <div class="return">
             <a href="{% url 'projects' %}">На главную</a>
         </div>
+        <div class="return">
+            <a href="{% url 'new_task' project.pk %}">+ задача</a>
+        </div>
     </li>
 {% endblock %}
 {% block content %}
@@ -25,7 +28,9 @@
             <div class="box">
                 <span>Дата окончания: {{project.date_finish}}</span>
             </div>
+            
         </div> 
+        
             {% for task in project.project.all %}
             <div class="task_box">
                 
@@ -46,8 +51,8 @@
                     <span>Обновлено: {{task.date_update}}</span>
                 </div>
                 <div class="box">
-                    <a href="{% url 'delete_task' task.pk %}" class="btn btn-danger">Удалить</a>
-                    <a href="{% url 'update_task' task.pk %}" class="btn btn-primary">Редактировать</a>
+                    <a href="{% url 'delete_task' project.pk task.pk %}" class="btn btn-danger">Удалить</a>
+                    <a href="{% url 'update_task' project.pk task.pk %}" class="btn btn-primary">Редактировать</a>
                 </div>
                 
             </div>

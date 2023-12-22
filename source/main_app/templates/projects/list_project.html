@@ -12,6 +12,10 @@
 {% endblock %}
 {% block content %}
         <h1>To-do task manager!</h1>
+        {% if is_paginated %}
+            {% include 'partial/pagination.html' %}
+        {% endif %}
+        {% include 'partial/search_form.html' %}
         <div class="task_container">
             {% for project in projects %}
                 <div class="task_box">
@@ -19,9 +23,18 @@
                     <h3>Дата окончания: {{project.date_finish}}</h3>
                     <h3>Дата начала: {{project.date_create}}</h3>
                     <p><a href="{% url 'project_details' project.pk %}">Подробнее</a></p>
+                    <div class="box">
+                        <a href="{% url 'delete_project' project.pk %}" class="btn btn-danger">Удалить</a>
+                        <a href="{% url 'update_project' project.pk %}" class="btn btn-primary">Редактировать</a>
+                    </div>
                 </div>
                 <hr>
+                {% empty %}
+                <p>проекты не найдены</p>
             {% endfor %}
         </div>
+        {% if is_paginated %}
+            {% include 'partial/pagination.html' %}
+        {% endif %}
 {% endblock %}
 

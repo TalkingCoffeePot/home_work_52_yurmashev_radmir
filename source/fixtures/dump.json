@@ -52,6 +52,16 @@
   }
 },
 {
+  "model": "main_app.projectmodel",
+  "pk": 2,
+  "fields": {
+    "date_create": "2024-01-15",
+    "date_finish": null,
+    "title": "ragrveeser",
+    "description": "fdsavtgfrsavbtgbasvr"
+  }
+},
+{
   "model": "main_app.task",
   "pk": 1,
   "fields": {
@@ -154,6 +164,34 @@
     "task_types": [
       3
     ]
+  }
+},
+{
+  "model": "main_app.task",
+  "pk": 9,
+  "fields": {
+    "summery": "fdsgfsdg",
+    "description": "gsfdgfsdgfdsgfsdgsdg",
+    "task_project": 1,
+    "task_status": 1,
+    "date_create": "2023-12-21T23:17:47.519Z",
+    "date_update": "2023-12-21T23:17:47.519Z",
+    "task_types": [
+      2
+    ]
+  }
+},
+{
+  "model": "main_app.task",
+  "pk": 19,
+  "fields": {
+    "summery": "ggggg",
+    "description": "hhhhh",
+    "task_project": 2,
+    "task_status": 3,
+    "date_create": "2023-12-21T23:43:51.220Z",
+    "date_update": "2023-12-21T23:43:51.220Z",
+    "task_types": []
   }
 }
 ]

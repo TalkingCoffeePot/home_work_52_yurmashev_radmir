@@ -17,10 +17,18 @@
         <ul class="menu">
             {% block menu %}{% endblock %}
             <li class="list">
+                {% if user.is_authenticated %}
+                <li class="menu-right">
+                    <div class="new_task_button">
+                        <a href="{% url 'accounts:log_out' %}" class="nav-link">Выход</a>
+                    </div>
+                </li>
+                <li class="menu-right">Привет, {{ user.username }}!</li>
+            {% else %}
                 <div class="new_task_button">
                     <a href="{% url 'accounts:log_in' %}">Войти</a>
                 </div>
-                
+            {% endif %}
             </li>
         </ul>
     </div>

@@ -7,6 +7,7 @@ from django.views.generic import ListView, DeleteView, DetailView, UpdateView, C
 from main_app.models import ProjectModel
 from main_app.forms import ProjectForm, SimpleSearchForm
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ListProjectsView(ListView):
     template_name = 'projects/list_project.html'
@@ -51,7 +52,7 @@ class DetailProjectView(DeleteView):
     pk_url_kwarg = 'project_pk'
 
 
-class CreateProjectView(CreateView):
+class CreateProjectView(LoginRequiredMixin, CreateView):
     template_name = 'projects/create_project.html'
     form_class = ProjectForm
     
@@ -59,7 +60,7 @@ class CreateProjectView(CreateView):
         return reverse('projects')
     
 
-class UpdateProject(UpdateView):
+class UpdateProject(LoginRequiredMixin, UpdateView):
     model = ProjectModel
     template_name = 'projects/update_project.html'
     pk_url_kwarg = 'project_pk'
@@ -71,7 +72,7 @@ class UpdateProject(UpdateView):
     
     
 
-class DeleteProject(DeleteView):
+class DeleteProject(LoginRequiredMixin, DeleteView):
     template_name = 'projects/delete_project.html'
     pk_url_kwarg = 'project_pk'
     model = ProjectModel

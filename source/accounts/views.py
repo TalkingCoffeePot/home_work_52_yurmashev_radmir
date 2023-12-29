@@ -12,12 +12,12 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('article_index')
+            return redirect('projects')
         else:
             context['has_error'] = True
 
-    return render(request, 'login.html', context=context)
+    return render(request, 'accounts/login.html', context=context)
 
 def logout_view(request):
     logout(request)
-    return redirect('webapp:home')
+    return redirect('projects')

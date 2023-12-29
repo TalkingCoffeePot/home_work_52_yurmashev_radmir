@@ -16,6 +16,12 @@
     <div class="nav_container">
         <ul class="menu">
             {% block menu %}{% endblock %}
+            <li class="list">
+                <div class="new_task_button">
+                    <a href="{% url 'accounts:log_in' %}">Войти</a>
+                </div>
+                
+            </li>
         </ul>
     </div>
 </nav>

@@ -45,7 +45,7 @@ class ListProjectsView(ListView):
         return None
     
 
-class DetailProjectView(DeleteView):
+class DetailProjectView(DetailView):
     template_name = 'projects/detailed_project.html'
     model = ProjectModel
     context_object_name = 'project'

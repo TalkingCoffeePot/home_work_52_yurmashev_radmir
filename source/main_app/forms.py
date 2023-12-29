@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import widgets
-from main_app.models import TypeModel, StatusModel, Task, ProjectModel
+from main_app.models import Task, ProjectModel
 
 class TaskForm(forms.ModelForm):
     class Meta:

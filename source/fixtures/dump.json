@@ -48,7 +48,11 @@
     "date_create": "2023-12-01",
     "date_finish": null,
     "title": "Сайт",
-    "description": "DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
+    "description": "DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription",
+    "users": [
+      2,
+      7
+    ]
   }
 },
 {
@@ -56,11 +60,11 @@
   "pk": 1,
   "fields": {
     "summery": "Добавить шапку сайта",
-    "description": "Do that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that task",
+    "description": "1Do that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that taskDo that task",
     "task_project": 1,
     "task_status": 1,
     "date_create": "2023-12-14T19:21:29.659Z",
-    "date_update": "2023-12-21T23:58:29.576Z",
+    "date_update": "2024-01-09T11:25:34.638Z",
     "task_types": [
       2
     ]

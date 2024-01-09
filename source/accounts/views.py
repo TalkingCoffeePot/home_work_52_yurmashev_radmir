@@ -1,5 +1,9 @@
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views.generic import CreateView
+from django.contrib.auth.models import User
+from accounts.forms import NewUserForm
 
 # Create your views here.
 
@@ -21,3 +25,16 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('projects')
+
+class UserRegisterView(CreateView):
+    model = User
+    template_name = 'accounts/register.html'
+    form_class = NewUserForm
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect(self.get_success_url())
+    
+    def get_success_url(self):
+        return reverse('projects')

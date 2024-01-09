@@ -9,7 +9,9 @@
             <a href="{% url 'projects' %}">На главную</a>
         </div>
         <div class="return">
-            <a href="{% url 'new_task' project.pk %}">+ задача</a>
+            {% if perms.main_app.create_tasks %}
+                <a href="{% url 'new_task' project.pk %}">+ задача</a>
+            {% endif %}
         </div>
     </li>
 {% endblock %}
@@ -59,10 +61,10 @@
                     <span>Обновлено: {{task.date_update}}</span>
                 </div>
                 <div class="box">
-                    {% if perms.main_app.delete_projects %}
+                    {% if perms.main_app.delete_tasks %}
                         <a href="{% url 'delete_task' project.pk task.pk %}" class="btn btn-danger">Удалить</a>
                     {% endif %}
-                    {% if perms.main_app.change_projects %}
+                    {% if perms.main_app.change_tasks %}
                         <a href="{% url 'update_task' project.pk task.pk %}" class="btn btn-primary">Редактировать</a>
                     {% endif %}
                 </div>

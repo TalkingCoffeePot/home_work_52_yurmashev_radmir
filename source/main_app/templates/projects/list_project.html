@@ -6,7 +6,9 @@
 {% block menu %}
     <li class="list">
         <div class="return">
-            <a href="{% url 'create_project' %}">Добавить новый проект</a>
+            {% if perms.main_app.create_projects %}
+                <a href="{% url 'create_project' %}">Добавить новый проект</a>
+            {% endif %}
         </div>
     </li>
 {% endblock %}
@@ -24,8 +26,12 @@
                     <h3>Дата начала: {{project.date_create}}</h3>
                     <p><a href="{% url 'project_details' project.pk %}">Подробнее</a></p>
                     <div class="box">
-                        <a href="{% url 'delete_project' project.pk %}" class="btn btn-danger">Удалить</a>
-                        <a href="{% url 'update_project' project.pk %}" class="btn btn-primary">Редактировать</a>
+                        {% if perms.main_app.delete_projects %}
+                            <a href="{% url 'delete_project' project.pk %}" class="btn btn-danger">Удалить</a>
+                        {% endif %}
+                        {% perms.main_app.change_projects %}
+                            <a href="{% url 'update_project' project.pk %}" class="btn btn-primary">Редактировать</a>
+                        {% endif %}
                     </div>
                 </div>
                 <hr>

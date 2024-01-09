@@ -5,7 +5,7 @@ from django.db.models.query import QuerySet
 from django.http.response import HttpResponse as HttpResponse
 from django.views.generic import ListView, DeleteView, DetailView, UpdateView, CreateView
 from main_app.models import ProjectModel
-from main_app.forms import ProjectForm, SimpleSearchForm
+from main_app.forms import ProjectForm, SimpleSearchForm, ProjectUsersForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -61,14 +61,13 @@ class CreateProjectView(PermissionRequiredMixin, CreateView):
         return reverse('projects')
     
 
-class UpdateProject(LoginRequiredMixin, UpdateView):
+class UpdateProject(PermissionRequiredMixin, UpdateView):
     model = ProjectModel
     template_name = 'projects/update_project.html'
     pk_url_kwarg = 'project_pk'
     form_class = ProjectForm
     context_object_name = 'project'
     permission_required = 'main_app.change_projects'
-    permission_required = 'main_app.change_users'
 
     def get_success_url(self):
         return reverse('project_details', kwargs={'project_pk': self.object.pk})
@@ -81,3 +80,14 @@ class DeleteProject(LoginRequiredMixin, DeleteView):
     context_object_name = 'project'
     success_url = reverse_lazy('projects')
     permission_required = 'main_app.delete_projects'
+
+class UpdateProjectUsers(PermissionRequiredMixin, UpdateView):
+    model = ProjectModel
+    template_name = 'projects/user_update.html'
+    pk_url_kwarg = 'project_pk'
+    form_class = ProjectUsersForm
+    context_object_name = 'project'
+    permission_required = 'main_app.change_users'
+
+    def get_success_url(self):
+        return reverse('project_details', kwargs={'project_pk': self.object.pk})

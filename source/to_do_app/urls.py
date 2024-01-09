@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from main_app.views import  AddTaskView, UpdateTaskView, DeleteTaskView
-from main_app.views import ListProjectsView, DetailProjectView, CreateProjectView, UpdateProject, DeleteProject
+from main_app.views import ListProjectsView, DetailProjectView, CreateProjectView, UpdateProject, DeleteProject, UpdateProjectUsers
 
 
 app_name='main_app'
@@ -12,7 +12,7 @@ urlpatterns = [
     path('projects/<int:project_pk>', DetailProjectView.as_view(), name='project_details'),
     path('projects/create/', CreateProjectView.as_view(), name='create_project'),
     path('projects/<int:project_pk>/update/', UpdateProject.as_view(), name='update_project'),
-    path('projects/<int:project_pk>/update/users', UpdateProject.as_view(), name='update_project_users'),
+    path('projects/<int:project_pk>/update/users/', UpdateProjectUsers.as_view(), name='update_projects_users'),
     path('projects/<int:project_pk>/delete/', DeleteProject.as_view(), name ='delete_project'),
 
     path('projects/<int:project_pk>/tasks/new/', AddTaskView.as_view(), name='new_task'),

@@ -8,11 +8,7 @@
         <div class="return">
             <a href="{% url 'projects' %}">На главную</a>
         </div>
-        {% if perms.main_app.change_users %}
-            <div class="return">
-                <a href="{% url 'update_projects_users' %}">Изменить участников проекта</a>
-            </div>
-        {% endif %}
+        
     </li>
 {% endblock %}
 {% block content %}
@@ -20,4 +16,9 @@
 <form action="" method="post">
     {% include 'partial/form.html' with button_text='Update' %}
 </form>
+{% if perms.main_app.change_users %}
+            <div class="return">
+                <a href="{% url 'update_projects_users' project.pk %}">Изменить участников</a>
+            </div>
+        {% endif %}
 {% endblock %}

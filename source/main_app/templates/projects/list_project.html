@@ -29,7 +29,7 @@
                         {% if perms.main_app.delete_projects %}
                             <a href="{% url 'delete_project' project.pk %}" class="btn btn-danger">Удалить</a>
                         {% endif %}
-                        {% perms.main_app.change_projects %}
+                        {% if perms.main_app.change_projects %}
                             <a href="{% url 'update_project' project.pk %}" class="btn btn-primary">Редактировать</a>
                         {% endif %}
                     </div>

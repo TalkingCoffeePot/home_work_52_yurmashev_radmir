@@ -22,14 +22,14 @@
                         <a href="{% url 'accounts:log_out' %}" class="nav-link">Выход</a>
                     </div>
                     <div class="return">Привет, {{ user.username }}!</div>
-            {% else %}
-                <div class="return">
-                    <a href="{% url 'accounts:log_in' %}?next={{ request.get_full_path }}">Войти</a>
-                </div>
-                <div class="return">
-                    <a href="{% url 'accounts:register_user' %}?next={{ request.get_full_path }}">Регистрация</a>
-                </div>
-            {% endif %}
+                {% else %}
+                    <div class="return">
+                        <a href="{% url 'accounts:log_in' %}?next={{ request.get_full_path }}">Войти</a>
+                    </div>
+                    <div class="return">
+                        <a href="{% url 'accounts:register_user' %}?next={{ request.get_full_path }}">Регистрация</a>
+                    </div>
+                {% endif %}
             </li>
         </ul>
     </div>

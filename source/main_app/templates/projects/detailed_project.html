@@ -61,10 +61,10 @@
                     <span>Обновлено: {{task.date_update}}</span>
                 </div>
                 <div class="box">
-                    {% if perms.main_app.delete_tasks %}
+                    {% if perms.main_app.delete_tasks and request.user in project.user_list.all %}
                         <a href="{% url 'delete_task' project.pk task.pk %}" class="btn btn-danger">Удалить</a>
                     {% endif %}
-                    {% if perms.main_app.change_tasks %}
+                    {% if perms.main_app.change_tasks and request.user in project.user_list.all %}
                         <a href="{% url 'update_task' project.pk task.pk %}" class="btn btn-primary">Редактировать</a>
                     {% endif %}
                 </div>

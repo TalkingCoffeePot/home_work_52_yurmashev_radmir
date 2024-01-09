@@ -19,6 +19,10 @@ class AddTaskView(PermissionRequiredMixin, CreateView):
         task.task_project = project
         task.save()
         return redirect('project_details', project_pk=project.pk)
+    
+    def has_permission(self):
+        project = get_object_or_404(ProjectModel, pk=self.kwargs.get('project_pk'))
+        return project.users.filter(id=self.request.user.id).exists()
 
 
 class UpdateTaskView(PermissionRequiredMixin, UpdateView):
@@ -32,6 +36,10 @@ class UpdateTaskView(PermissionRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('project_details', kwargs={'project_pk': self.object.task_project.pk})
     
+    def has_permission(self):
+        project = get_object_or_404(ProjectModel, pk=self.kwargs.get('project_pk'))
+        return project.users.filter(id=self.request.user.id).exists()
+    
 
 class DeleteTaskView(PermissionRequiredMixin, DeleteView):
     template_name = 'tasks/delete_task.html'
@@ -42,4 +50,8 @@ class DeleteTaskView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('project_details', kwargs={'project_pk': self.object.task_project.pk})
+    
+    def has_permission(self):
+        project = get_object_or_404(ProjectModel, pk=self.kwargs.get('project_pk'))
+        return project.users.filter(id=self.request.user.id).exists()
 

@@ -50,6 +50,7 @@ class DetailProjectView(DetailView):
     model = ProjectModel
     context_object_name = 'project'
     pk_url_kwarg = 'project_pk'
+    
 
 
 class CreateProjectView(PermissionRequiredMixin, CreateView):

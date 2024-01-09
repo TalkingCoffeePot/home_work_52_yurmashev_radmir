@@ -7,7 +7,7 @@ from django.views.generic import ListView, DeleteView, DetailView, UpdateView, C
 from main_app.models import ProjectModel
 from main_app.forms import ProjectForm, SimpleSearchForm
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 class ListProjectsView(ListView):
     template_name = 'projects/list_project.html'
@@ -52,9 +52,10 @@ class DetailProjectView(DetailView):
     pk_url_kwarg = 'project_pk'
 
 
-class CreateProjectView(LoginRequiredMixin, CreateView):
+class CreateProjectView(PermissionRequiredMixin, CreateView):
     template_name = 'projects/create_project.html'
     form_class = ProjectForm
+    permission_required = 'main_app.create_projects'
     
     def get_success_url(self):
         return reverse('projects')
@@ -66,10 +67,11 @@ class UpdateProject(LoginRequiredMixin, UpdateView):
     pk_url_kwarg = 'project_pk'
     form_class = ProjectForm
     context_object_name = 'project'
+    permission_required = 'main_app.change_projects'
+    permission_required = 'main_app.change_users'
 
     def get_success_url(self):
         return reverse('project_details', kwargs={'project_pk': self.object.pk})
-    
     
 
 class DeleteProject(LoginRequiredMixin, DeleteView):
@@ -78,3 +80,4 @@ class DeleteProject(LoginRequiredMixin, DeleteView):
     model = ProjectModel
     context_object_name = 'project'
     success_url = reverse_lazy('projects')
+    permission_required = 'main_app.delete_projects'

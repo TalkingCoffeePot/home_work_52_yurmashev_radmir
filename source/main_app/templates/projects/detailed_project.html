@@ -28,6 +28,14 @@
             <div class="box">
                 <span>Дата окончания: {{project.date_finish}}</span>
             </div>
+            <div class="'box">
+                <h4>Задействованы в проекте:</h4>
+                <li class="list">
+                {% for usr in project.users.all %}
+                    <div class="return">{{usr.username}}</div>
+                {% endfor %}
+                </li>
+            </div>
             
         </div> 
         
@@ -51,8 +59,12 @@
                     <span>Обновлено: {{task.date_update}}</span>
                 </div>
                 <div class="box">
-                    <a href="{% url 'delete_task' project.pk task.pk %}" class="btn btn-danger">Удалить</a>
-                    <a href="{% url 'update_task' project.pk task.pk %}" class="btn btn-primary">Редактировать</a>
+                    {% if perms.main_app.delete_projects %}
+                        <a href="{% url 'delete_task' project.pk task.pk %}" class="btn btn-danger">Удалить</a>
+                    {% endif %}
+                    {% if perms.main_app.change_projects %}
+                        <a href="{% url 'update_task' project.pk task.pk %}" class="btn btn-primary">Редактировать</a>
+                    {% endif %}
                 </div>
                 
             </div>

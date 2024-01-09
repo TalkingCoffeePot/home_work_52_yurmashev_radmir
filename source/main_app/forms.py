@@ -34,6 +34,10 @@ class ProjectForm(forms.ModelForm):
             'date_finish',
         ]
 
+class ProjectUsersForm(forms.ModelForm):
+    class Meta:
+        model = ProjectModel
+        fields = ['users']
 
 class SimpleSearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False, label="Найти")
